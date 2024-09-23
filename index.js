@@ -9,14 +9,17 @@ function createProductsList() {
     if (products.length) {
         products.forEach(item => {
 
-            const {images,brandName} = item
+            const {images,brand,additionalInfo,discountedPrice,originalPrice,discountPercentage} = item
 
-            const createProduct = `<div class="product-card">
-            
-                                        <img src="${images[0]}" alt="${brandName}" />
-                                        <h6>${brandName}</h6>
+            console.log(images,brand,additionalInfo,discountedPrice,originalPrice,discountPercentage)
 
-                                  </div>`
+            const createProduct = `<li class="product-card">
+                                        <div>  
+                                          <img src="${images[0].src}" alt="${brand}" />
+                                        </div>
+                                        <h6>${brand}</h6>
+                                        <p>${additionalInfo}</p>
+                                  </li>`
 
             document.querySelector("#append_Products").innerHTML += createProduct
 

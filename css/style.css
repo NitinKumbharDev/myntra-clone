@@ -109,3 +109,22 @@ main {
     width: min(100% - 30px);
     margin-inline: auto;
 }
+
+.product-list{
+    display: flex;
+    align-items: self-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.product-card{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    /* gap: .55rem; */
+    width: calc(100% / 4* .61);
+    height: 100%;
+    margin: 10px;
+}
