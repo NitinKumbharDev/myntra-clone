@@ -62,7 +62,7 @@ img {
     box-shadow: 0 4px 12px 0 rgba(0, 0, 0, .0658);
     overflow: hidden;
     display: grid;
-    grid-template-columns: auto 1fr .05fr;
+    grid-template-columns: auto 1fr 150px;
     align-items: center;
     justify-content: center;
     z-index: 1;
@@ -80,7 +80,7 @@ img {
     display: flex;
     align-items: center;
     gap: 1.55rem;
-    width: min(100% - 35rem);
+    width: min(100% - 350px);
     background: #f5f5f6;
     border: 1px solid #f5f5f6;
     margin: 0 auto;
@@ -136,6 +136,8 @@ main {
     display: flex;
     flex-direction: column;
     padding: .5rem;
+    position: relative;
+    z-index: -1;
 }
 
 
@@ -194,6 +196,7 @@ main {
 .product-top--section{
     position: relative;
     overflow: hidden;
+    z-index: -1;
 }
 
 .wishlist-section{
@@ -229,3 +232,26 @@ main {
     padding: 5px 0;
     cursor: pointer;
 }
+
+.menu-tooling--section{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+
+.skeleton {
+    background-color: #e0e0e0;
+    background-image: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+
+@keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
