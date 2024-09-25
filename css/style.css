@@ -196,7 +196,6 @@ main {
 .product-top--section{
     position: relative;
     overflow: hidden;
-    z-index: -1;
 }
 
 .wishlist-section{
@@ -233,6 +232,10 @@ main {
     cursor: pointer;
 }
 
+.wishlist-btn > *{
+    pointer-events: none;
+}
+
 .menu-tooling--section{
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -245,6 +248,12 @@ main {
     background-size: 200% 100%;
     animation: shimmer 1.5s infinite;
   }
+
+.skeleton .product-top--section{
+    position: relative;
+    overflow: hidden;
+    z-index: -1;
+}
 
 
 @keyframes shimmer {
