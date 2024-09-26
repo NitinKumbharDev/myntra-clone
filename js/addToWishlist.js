@@ -1,8 +1,7 @@
 const wishlistDataArr = [];
 
 export function addToWishlist(e) {
-   const getProductData = e.target.getAttribute("product-data");
-   console.log(JSON.parse(decodeURIComponent(getProductData)))
-
-   
+   const getProductData = JSON.parse(decodeURIComponent(e.target.getAttribute("product-data")))
+   let {images,brand} = getProductData;
+   console.log(images,brand)
 }
