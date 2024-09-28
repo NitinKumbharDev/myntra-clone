@@ -43,14 +43,10 @@ async function createProductsList(scrollCount) {
             document.querySelector("#append_Products").innerHTML += createProduct;
         })
 
-        setTimeout(() => document.querySelectorAll(".product-card").forEach(skeletonCard => skeletonCard.classList.remove("skeleton")), 4000)
+        setTimeout(() => document.querySelectorAll(".product-card").forEach(skeletonCard => skeletonCard.classList.remove("skeleton")), 2000)
         document.querySelectorAll(".wishlist-btn").forEach(item => item.addEventListener("click", addToWishlist))
-
     }
 }
-
-
-
 
 window.addEventListener('scroll', () => {
     if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
