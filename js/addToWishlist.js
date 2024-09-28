@@ -19,6 +19,8 @@ export function addToWishlist(e) {
 function populateAddToWishlist() {
    document.querySelector("#wishlist_Badge_Count").innerText = wishlistDataArr.length || ""
    if (wishlistDataArr.length) {
+    
+      
       
    }
 }

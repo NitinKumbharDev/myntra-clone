@@ -275,6 +275,29 @@ main {
     line-height: .25;
 }
 
+.empty-wishlist {
+    display: grid;
+    grid-template-rows: auto auto auto;
+    place-items: center;
+    padding-top: 15%;
+}
+
+.empty-wishlist h3{
+    font-size: 20px;
+    font-size: 600;
+}
+
+.empty-wishlist p{
+    font-size: 18px;
+    color: #94989f;
+    margin-top: 10px;
+    font-weight: 400;
+}
+
+.empty-wishlist img{
+    width: 120px;
+    margin-top: 20px;
+}
 
 @keyframes shimmer {
     0% {
