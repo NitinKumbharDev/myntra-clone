@@ -1,5 +1,4 @@
 let wishlistDataArr = [];
-
 export function addToWishlist(e) {
    const getProductData = JSON.parse(decodeURIComponent(e.target.getAttribute("product-data")))
    if (wishlistDataArr.some(element => element.styleId === getProductData.styleId)) {
@@ -18,6 +17,9 @@ export function addToWishlist(e) {
 }
 
 function populateAddToWishlist() {
-
-
+   document.querySelector("#wishlist_Badge_Count").innerText = wishlistDataArr.length || ""
+   if (wishlistDataArr.length) {
+      
+   }
 }
+

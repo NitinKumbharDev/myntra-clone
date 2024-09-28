@@ -52,6 +52,10 @@ img {
     cursor: pointer;
 }
 
+.position-relative{
+    position: relative;
+}
+
 .header-container {
     position: fixed;
     top: 0;
@@ -253,6 +257,22 @@ main {
     position: relative;
     overflow: hidden;
     z-index: -1;
+}
+
+.count-Badge:not(:empty){
+    position: absolute;
+    top: -2px;
+    right: 19px;
+    background-color: #f16565;
+    color: #FFF;
+    font-size: 12px;
+    padding: 0;
+    border-radius: 9999px;
+    display: grid;
+    place-items: center;
+    width: 18px;
+    height: 18px;
+    line-height: .25;
 }
 
 

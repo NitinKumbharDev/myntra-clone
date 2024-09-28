@@ -19,17 +19,21 @@ export default async function createHeader() {
                                     <input type="text" placeholder="Search for products..." />
                                 </div>
                                 <div class="menu-tooling--section">
-                                    <div class="d-flex flex-column align-items-center justify-content-center cursor-pointer">
+                                    <div class="d-flex flex-column align-items-center justify-content-center cursor-pointer position-relative" onclick="showWishlistPage()">
                                       <span class="d-flex flex-column align-items-center justify-content-center">${wishlistIcon}</span>
                                       <p>Wishlist</p> 
+                                      <small id="wishlist_Badge_Count" class="count-Badge"></small>
                                     </div>
-                                    <div class="d-flex flex-column align-items-center justify-content-center cursor-pointer">
+                                    <div class="d-flex flex-column align-items-center justify-content-center cursor-pointer position-relative">
                                        <span class="d-flex flex-column align-items-center justify-content-center">${bagIcon}</span>
                                        <p>Bag</p> 
+                                       <small id="bag_Badge_Count" class="count-Badge"></small>
                                     </div>
                                 </div>
                             </header>`
 
     document.querySelector("#append_Header").innerHTML = headerElement;
+
+    
 }
 
