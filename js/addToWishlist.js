@@ -1,49 +1,120 @@
-export let wishlistDataArr = [];
-export function addToWishlist(e) {
-   const getProductData = JSON.parse(decodeURIComponent(e.target.getAttribute("product-data")))
-   if (wishlistDataArr.some(element => element.styleId === getProductData.styleId)) {
-      Object.assign(e.target.style, { backgroundColor: "#FFF", color: "#282c3f" });
-      Object.assign(e.target.children[0].style, { fill: "none" });
-      let filterArray = wishlistDataArr.filter(item => item.styleId !== getProductData.styleId);
-      wishlistDataArr = []
-      wishlistDataArr = [...filterArray]
-   } else {
-      Object.assign(e.target.style, { backgroundColor: "rgb(83, 87, 102)", color: "#FFF" });
-      Object.assign(e.target.children[0].style, { fill: "#ff3f6c" });
-      wishlistDataArr.push(getProductData)
-   }
+import { createMoveToBagList } from "./moveToBag.js";
 
-   populateAddToWishlist()
+let moveToBagData = [];
+let wishlistDataArr = [];
+
+//Get Data From Wishlist
+export function addToWishlist(e) {
+
+   const getProductData = JSON.parse(decodeURIComponent(e.target.getAttribute("product-data")))
+
+   if (!moveToBagData.length) {
+      if (wishlistDataArr.some(element => element.styleId === getProductData.styleId)) {
+         Object.assign(e.target.style, { backgroundColor: "#FFF", color: "#282c3f" });
+         Object.assign(e.target.children[0].style, { fill: "none" });
+         let filterArray = wishlistDataArr.filter(item => item.styleId !== getProductData.styleId);
+         wishlistDataArr = []
+         wishlistDataArr = [...filterArray]
+      } else {
+         Object.assign(e.target.style, { backgroundColor: "rgb(83, 87, 102)", color: "#FFF" });
+         Object.assign(e.target.children[0].style, { fill: "#ff3f6c" });
+         wishlistDataArr.push(getProductData)
+      }
+
+      Toastify({
+         text: `${getProductData.product} Added In Wishlist`,
+         className: "notify-success",
+         position: "center",
+         style: {
+            background: "linear-gradient(to right, #00b09b, #96c93d)",
+         }
+      }).showToast();
+
+      populateAddToWishlist()
+   } else {
+
+      if (moveToBagData.some(element => element.styleId === getProductData.styleId)) {
+
+         Toastify({
+            text: `This Product All Ready Added In Bag`,
+            className: "notify-success",
+            position: "center",
+            style: {
+               background: "#ff0e0e",
+            }
+         }).showToast();
+
+      }
+
+   }
 }
 
+//Handel Remove Populated Products
 function handelRemoveProductFromWishlist(e) {
+
    if (wishlistDataArr.some(element => element.styleId == e.target.id.split("_")[1])) {
       Object.assign(document.querySelector(`#btn_${e.target.id.split("_")[1]}`).style, { backgroundColor: "#FFF", color: "#282c3f" });
       Object.assign(document.querySelector(`#btn_${e.target.id.split("_")[1]} svg`).style, { fill: "none" });
       let filterArray = wishlistDataArr.filter(item => item.styleId != e.target.id.split("_")[1]);
       wishlistDataArr = []
       wishlistDataArr = [...filterArray]
+
+      Toastify({
+         text: `${e.target.offsetParent.nextElementSibling.children[0].innerText} Remove From Wishlist`,
+         className: "notify-danger",
+         position: "center",
+         style: {
+            background: "#ff0e0e",
+         }
+      }).showToast();
+
    }
+
    populateAddToWishlist();
 }
 
+//Handel Select Product Size
+function handelSelectSize(e) {
+   let getSizeNodeList = [...e.target.parentElement.children]
+   getSizeNodeList.forEach(element => element.classList.remove("select"))
+   e.target.classList.add("select");
+}
+
+
+//Handel Product Moving To Bag
 function handelAddToMoveBag(e) {
    const getSelectedSizeObj = {}
    const getSizeElements = [...e.target.parentElement.previousElementSibling.children]
    getSizeElements.some(item => {
       if (item.classList.contains("select")) {
-         getSelectedSizeObj["size"] = item.innerText;
+         wishlistDataArr.some(element => {
+            if (element.styleId === +e.target.id.split("_")[0]) {
+               getSelectedSizeObj["size"] = item.innerText;
+               moveToBagData.push({ ...element, ...getSelectedSizeObj })
+               Object.assign(document.querySelector(`#btn_${e.target.id.split("_")[0]}`).style, { backgroundColor: "#FFF", color: "#282c3f" });
+               Object.assign(document.querySelector(`#btn_${e.target.id.split("_")[0]} svg`).style, { fill: "none" });
+               let filterArray = wishlistDataArr.filter(item => item.styleId !== +e.target.id.split("_")[0]);
+               wishlistDataArr = []
+               wishlistDataArr = [...filterArray]
+               populateAddToWishlist();
+            }
+         })
       }
    })
-   JSON.stringify(getSelectedSizeObj) === '{}' ? alert("Please Select Product Size") : ""
+
+   JSON.stringify(getSelectedSizeObj) === '{}' ?
+      Toastify({
+         text: `Please Select Any One Size`,
+         className: "notify-success",
+         position: "right",
+         style: {
+            background: "rgb(0, 176, 155)",
+         }
+      }).showToast() : createMoveToBagList(moveToBagData)
 }
 
-function handelSelectSize(e) {
-   document.querySelectorAll(".select-size > span").forEach(element => element.classList.remove("select"))
-   e.target.classList.add("select");
-}
 
-
+//Populate Wishlist Product List
 function populateAddToWishlist() {
    document.querySelector("#wishlist_Badge_Count").innerText = wishlistDataArr.length || ""
    if (wishlistDataArr.length) {
@@ -97,4 +168,3 @@ function populateAddToWishlist() {
       document.querySelector("#append_Wishlist").innerHTML = ""
    }
 }
-

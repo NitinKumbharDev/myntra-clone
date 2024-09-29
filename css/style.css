@@ -66,9 +66,10 @@ img {
     box-shadow: 0 4px 12px 0 rgba(0, 0, 0, .0658);
     overflow: hidden;
     display: grid;
-    grid-template-columns: auto 1fr 150px;
+    /* grid-template-columns: auto 1fr 150px; */
+    grid-template-columns: auto 150px;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     z-index: 1;
 }
 
@@ -360,6 +361,14 @@ main {
 .select-size>span.select {
     color: var(--primary-color);
     border-color: var(--primary-color);
+}
+
+.notify-success, .notify-danger{
+    padding: 1rem;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: .75px;
+    border-radius: 6px;
 }
 
 @keyframes shimmer {

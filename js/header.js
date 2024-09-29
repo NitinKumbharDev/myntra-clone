@@ -14,7 +14,7 @@ export default async function createHeader() {
 
     const headerElement = `<header class="header-container">
                                 <a class="logo" id="Home_Nav"><img src="../img/myntra-2.svg" alt="logo" /></a>
-                                <div class="search-section">
+                                <div class="search-section d-none">
                                     <span class="d-flex align-items-center justify-content-center">${searchIcon}</span>
                                     <input type="text" placeholder="Search for products..." />
                                 </div>
