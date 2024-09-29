@@ -1,15 +1,15 @@
 export let moveToBagData = [];
 export function createMoveToBagList() {
+    let totalMRP,totalDiscount = 0;
     document.querySelector("#bag_Badge_Count").innerText = moveToBagData.length || ""
 
     if (moveToBagData.length) {
+        document.querySelector("#item_count").innerHTML = moveToBagData.length + " Items"
         document.querySelector("#empty_Bag").classList.add("d-none")
         document.querySelector("#bag_section").classList.remove("d-none")
         document.querySelector("#append_bagItem").innerHTML = ""
         moveToBagData.forEach(item => {
-
             const { images, brand, additionalInfo, discountedPrice, originalPrice, discountPercentage, product, styleId, size } = item
-
             const createBagItem = `<li class="position-relative">
                                         <span class="item-img">
                                             <img src="${images[0].src}" alt="${brand}" />
@@ -32,11 +32,17 @@ export function createMoveToBagList() {
                                                 </span>  
                                         </div>
                                     </li>`
-
-
             document.querySelector("#append_bagItem").innerHTML += createBagItem
 
+            totalMRP = discountedPrice + totalMRP
+            
+            totalDiscount =  (originalPrice - discountedPrice) + totalDiscount
+
         });
+
+        document.querySelector("#total_MRP").innerText =  "₹" + totalMRP
+        document.querySelector("#total_Discount").innerText =  "₹" + totalDiscount
+
         document.querySelectorAll(".bag--closed-btn").forEach(item => item.addEventListener("click", handelRemoveFromBag))
 
     } else {
