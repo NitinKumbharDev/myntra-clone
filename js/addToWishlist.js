@@ -1,6 +1,5 @@
-import { createMoveToBagList } from "./moveToBag.js";
+import { createMoveToBagList , moveToBagData } from "./moveToBag.js";
 
-let moveToBagData = [];
 let wishlistDataArr = [];
 
 //Get Data From Wishlist
@@ -113,7 +112,7 @@ function handelAddToMoveBag(e) {
          style: {
             background: "rgb(0, 176, 155)",
          }
-      }).showToast() : createMoveToBagList(moveToBagData)
+      }).showToast() : createMoveToBagList()
 }
 
 
@@ -123,7 +122,7 @@ function populateAddToWishlist() {
    if (wishlistDataArr.length) {
 
       document.querySelector("#append_Wishlist").classList.remove("d-none");
-      document.querySelector(".empty-wishlist").classList.add("d-none");
+      document.querySelector("#empty_wishlist").classList.add("d-none");
       document.querySelector("#append_Wishlist").innerHTML = ""
 
       wishlistDataArr.forEach((item) => {
@@ -167,7 +166,7 @@ function populateAddToWishlist() {
    } else {
       wishlistDataArr = []
       document.querySelector("#append_Wishlist").classList.add("d-none");
-      document.querySelector(".empty-wishlist").classList.remove("d-none");
+      document.querySelector("#empty_wishlist").classList.remove("d-none");
       document.querySelector("#append_Wishlist").innerHTML = ""
    }
 }

@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" href="/css/flexbox.css">
     <link rel="stylesheet" href="/css/style.css">
-    
+
 </head>
 
 <body>
@@ -28,30 +28,42 @@
         <div id="wishlist_Container" class="d-none">
             <!-----------------------Empty Wishlist Start----------------------------->
 
-            <div class="empty-wishlist">
+            <div class="empty-wishlist" id="empty_wishlist">
                 <h3>YOUR WISHLIST IS EMPTY</h3>
                 <p>Add items that you like to your wishlist.</p>
                 <img src="./img/wishlist-icon.svg" />
             </div>
-            
+
             <ul id="append_Wishlist" class="d-none product-list"></ul>
 
             <!-----------------------Empty Wishlist End----------------------------->
         </div>
         <!-----------------------Wishlist List Append Start----------------------------->
 
-         <!-----------------------Bag List Append Start----------------------------->
+        <!-----------------------Bag List Append Start----------------------------->
 
-         <div id="bag_Container" class="d-none">
-            <div class="empty-wishlist">
+        <div id="bag_Container" class="d-none">
+
+            <div class="empty-wishlist" id="empty_Bag">
                 <h3>YOUR BAG IS EMPTY</h3>
                 <p>There is nothing in your bag. Let's add some items.</p>
                 <img src="./img/shopping-bag.svg" />
             </div>
-         </div>
 
-         <!-----------------------Bag List Append End----------------------------->
-        
+            <div id="bag_section" class="bag-container d-none">
+                <div class="item-Block">
+                    <ul id="append_bagItem"></ul>
+                </div>
+
+                <div class="price-Block">
+                    <h1>Price Section</h1>
+                </div>
+            </div>
+
+        </div>
+
+        <!-----------------------Bag List Append End----------------------------->
+
     </main>
 
 

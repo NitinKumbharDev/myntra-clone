@@ -319,7 +319,7 @@ main {
     position: relative;
 }
 
-.wishlist--closed-btn {
+.wishlist--closed-btn,.bag--closed-btn {
     background-color: #ffffff63;
     width: 25px;
     height: 25px;
@@ -333,7 +333,7 @@ main {
     border-radius: 4px;
 }
 
-.wishlist--closed-btn>* {
+.wishlist--closed-btn>*, .bag--closed-btn > * {
     pointer-events: none;
 }
 
@@ -363,12 +363,77 @@ main {
     border-color: var(--primary-color);
 }
 
-.notify-success, .notify-danger{
+.notify-success,
+.notify-danger {
     padding: 1rem;
     font-size: 14px;
     font-weight: 500;
     letter-spacing: .75px;
     border-radius: 6px;
+}
+
+
+.bag-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    position: relative;
+}
+
+.item-Block {
+    border-right: 1px solid #d4d5d9;
+    padding: .55rem 0;
+}
+
+.item-Block>ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-inline: 10rem;
+}
+
+.item-Block>ul>li {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 120px auto;
+    border: 1px solid rgb(234, 234, 236);
+    padding: .55rem .45rem;
+    gap: 1rem;
+    border-radius: 4px;
+}
+
+.item-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.item-brand {
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.item-info {
+    font-size: 14px;
+    font-weight: 400;
+    color: #282c3f;
+}
+
+.item-size {
+    font-size: 14px;
+    font-weight: 400;
+    color: #282c3f;
+    opacity: .75;
+}
+
+.item-img img {
+    height: 100%;
+}
+
+.price-Block {
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    /* required */
 }
 
 @keyframes shimmer {
