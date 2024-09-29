@@ -5,47 +5,50 @@ let wishlistDataArr = [];
 
 //Get Data From Wishlist
 export function addToWishlist(e) {
-
    const getProductData = JSON.parse(decodeURIComponent(e.target.getAttribute("product-data")))
-
-   if (!moveToBagData.length) {
+   if (!moveToBagData.some(element => element.styleId === getProductData.styleId)) {
       if (wishlistDataArr.some(element => element.styleId === getProductData.styleId)) {
          Object.assign(e.target.style, { backgroundColor: "#FFF", color: "#282c3f" });
          Object.assign(e.target.children[0].style, { fill: "none" });
          let filterArray = wishlistDataArr.filter(item => item.styleId !== getProductData.styleId);
          wishlistDataArr = []
          wishlistDataArr = [...filterArray]
-      } else {
-         Object.assign(e.target.style, { backgroundColor: "rgb(83, 87, 102)", color: "#FFF" });
-         Object.assign(e.target.children[0].style, { fill: "#ff3f6c" });
-         wishlistDataArr.push(getProductData)
-      }
-
-      Toastify({
-         text: `${getProductData.product} Added In Wishlist`,
-         className: "notify-success",
-         position: "center",
-         style: {
-            background: "linear-gradient(to right, #00b09b, #96c93d)",
-         }
-      }).showToast();
-
-      populateAddToWishlist()
-   } else {
-
-      if (moveToBagData.some(element => element.styleId === getProductData.styleId)) {
 
          Toastify({
-            text: `This Product All Ready Added In Bag`,
-            className: "notify-success",
+            text: `${getProductData.product} Remove From Wishlist`,
+            className: "notify-danger",
             position: "center",
             style: {
                background: "#ff0e0e",
             }
          }).showToast();
 
+      } else {
+         Object.assign(e.target.style, { backgroundColor: "rgb(83, 87, 102)", color: "#FFF" });
+         Object.assign(e.target.children[0].style, { fill: "#ff3f6c" });
+         wishlistDataArr.push(getProductData)
+
+         Toastify({
+            text: `${getProductData.product} Added In Wishlist`,
+            className: "notify-success",
+            position: "center",
+            style: {
+               background: "linear-gradient(to right, #00b09b, #96c93d)",
+            }
+         }).showToast();
+
       }
 
+      populateAddToWishlist()
+   } else {
+      Toastify({
+         text: `This Product All Ready Added In Bag`,
+         className: "notify-success",
+         position: "center",
+         style: {
+            background: "#ff0e0e",
+         }
+      }).showToast();
    }
 }
 
@@ -106,7 +109,7 @@ function handelAddToMoveBag(e) {
       Toastify({
          text: `Please Select Any One Size`,
          className: "notify-success",
-         position: "right",
+         position: "center",
          style: {
             background: "rgb(0, 176, 155)",
          }

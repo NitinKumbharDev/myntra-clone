@@ -24,7 +24,7 @@ export default async function createHeader() {
                                       <p>Wishlist</p> 
                                       <small id="wishlist_Badge_Count" class="count-Badge"></small>
                                     </div>
-                                    <div class="d-flex flex-column align-items-center justify-content-center cursor-pointer position-relative">
+                                    <div class="d-flex flex-column align-items-center justify-content-center cursor-pointer position-relative" id="bag_Nav">
                                        <span class="d-flex flex-column align-items-center justify-content-center">${bagIcon}</span>
                                        <p>Bag</p> 
                                        <small id="bag_Badge_Count" class="count-Badge"></small>
@@ -37,13 +37,22 @@ export default async function createHeader() {
     document.querySelector("#Home_Nav").addEventListener("click", () => {
         document.querySelector("#append_Products").classList.remove("d-none")
         document.querySelector("#wishlist_Container").classList.add("d-none")
+        document.querySelector("#bag_Container").classList.add("d-none")
+        
     })
 
     document.querySelector("#wishlist_Nav").addEventListener("click", () => {
         document.querySelector("#append_Products").classList.add("d-none")
+         document.querySelector("#bag_Container").classList.add("d-none")
         document.querySelector("#wishlist_Container").classList.remove("d-none")
     })
 
+    document.querySelector("#bag_Nav").addEventListener("click", () => {
+        document.querySelector("#append_Products").classList.add("d-none")
+        document.querySelector("#bag_Container").classList.remove("d-none")
+        document.querySelector("#wishlist_Container").classList.add("d-none")
+      
+    })
 
 }
 
