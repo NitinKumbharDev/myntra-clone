@@ -38,12 +38,12 @@ export default async function createHeader() {
         document.querySelector("#append_Products").classList.remove("d-none")
         document.querySelector("#wishlist_Container").classList.add("d-none")
         document.querySelector("#bag_Container").classList.add("d-none")
-        
+
     })
 
     document.querySelector("#wishlist_Nav").addEventListener("click", () => {
         document.querySelector("#append_Products").classList.add("d-none")
-         document.querySelector("#bag_Container").classList.add("d-none")
+        document.querySelector("#bag_Container").classList.add("d-none")
         document.querySelector("#wishlist_Container").classList.remove("d-none")
     })
 
@@ -51,7 +51,7 @@ export default async function createHeader() {
         document.querySelector("#append_Products").classList.add("d-none")
         document.querySelector("#bag_Container").classList.remove("d-none")
         document.querySelector("#wishlist_Container").classList.add("d-none")
-      
+
     })
 
 }

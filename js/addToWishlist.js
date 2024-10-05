@@ -1,4 +1,4 @@
-import { createMoveToBagList , moveToBagData } from "./moveToBag.js";
+import { createMoveToBagList, moveToBagData } from "./moveToBag.js";
 
 let wishlistDataArr = [];
 

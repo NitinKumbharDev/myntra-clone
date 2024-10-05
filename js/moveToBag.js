@@ -1,6 +1,8 @@
 export let moveToBagData = [];
 export function createMoveToBagList() {
-    let totalMRP,totalDiscount = 0;
+    let totalMRP = []
+    let discountedMRP = []
+
     document.querySelector("#bag_Badge_Count").innerText = moveToBagData.length || ""
 
     if (moveToBagData.length) {
@@ -33,15 +35,21 @@ export function createMoveToBagList() {
                                         </div>
                                     </li>`
             document.querySelector("#append_bagItem").innerHTML += createBagItem
-
-            totalMRP = discountedPrice + totalMRP
-            
-            totalDiscount =  (originalPrice - discountedPrice) + totalDiscount
+            totalMRP.push(originalPrice)
+            discountedMRP.push(discountedPrice)
 
         });
 
-        document.querySelector("#total_MRP").innerText =  "₹" + totalMRP
-        document.querySelector("#total_Discount").innerText =  "₹" + totalDiscount
+
+        const totalProductMRP = totalMRP.reduce((accumulator, currentValue) => accumulator + currentValue, 0)
+        const totalDiscountedMRP = discountedMRP.reduce((accumulator, currentValue) => accumulator + currentValue, 0) - totalProductMRP
+        const totalAmount = discountedMRP.reduce((accumulator, currentValue) => accumulator + currentValue, 0) + 20 + 80
+
+
+        document.querySelector("#total_MRP").innerText = "₹ " + totalProductMRP;
+        document.querySelector("#total_Discount").innerText = "₹ " + totalDiscountedMRP;
+        document.querySelector("#total_amount").innerHTML = "₹ " + totalAmount;
+
 
         document.querySelectorAll(".bag--closed-btn").forEach(item => item.addEventListener("click", handelRemoveFromBag))
 
@@ -51,7 +59,7 @@ export function createMoveToBagList() {
     }
 }
 
-function handelRemoveFromBag(e){
+function handelRemoveFromBag(e) {
 
     if (moveToBagData.some(element => element.styleId == e.target.id.split("_")[1])) {
         let filterArray = moveToBagData.filter(item => item.styleId != e.target.id.split("_")[1]);
