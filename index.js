@@ -13,7 +13,6 @@ export const handelFilterClick = (getSorting) => {
         sortedProducts = getSorting === "lth" ? products.sort((a, b) => a.discountedPrice - b.discountedPrice) : products.sort((a, b) => b.discountedPrice - a.discountedPrice)
         document.querySelector(".sorting-filter--section").classList.toggle("d-none")
         document.querySelector("#append_Products").innerHTML = ""
-
         createProductsList(1)
     }
 }
