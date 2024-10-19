@@ -24,6 +24,7 @@ export default async function createHeader() {
                                     <span class="d-flex align-items-center justify-content-center">${searchIcon}</span>
                                     <input type="text" placeholder="Search for products..." />
                                 </div>
+                                
                                 <div class="menu-tooling--section">
                                     <div class="d-flex flex-column align-items-center justify-content-center cursor-pointer position-relative" id="filter_Nav">
                                       <span class="d-flex flex-column align-items-center justify-content-center">${filterIcon}</span>
@@ -40,7 +41,15 @@ export default async function createHeader() {
                                        <small id="bag_Badge_Count" class="count-Badge"></small>
                                     </div>
                                 </div>
-                            </header>`
+
+                            </header>
+                            
+                             <div class="sorting-filter--section d-none">
+                                       <span data-sort="htl">Hight To Low</span>
+                                       <span  data-sort="lth">Low To High</span>
+                                </div>
+
+                            `
 
     document.querySelector("#append_Header").innerHTML = headerElement;
 
@@ -64,7 +73,10 @@ export default async function createHeader() {
 
     })
 
-    document.getElementById("filter_Nav").onclick = handelFilterClick()
+    document.querySelectorAll(".sorting-filter--section > span").forEach( item=> item.onclick = handelFilterClick(item.getAttribute("data-sort")))
 
+    document.querySelector("#filter_Nav").addEventListener("click", () => document.querySelector(".sorting-filter--section").classList.toggle("d-none"))
+
+    
 }
 
