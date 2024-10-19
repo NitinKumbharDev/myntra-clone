@@ -47,6 +47,7 @@ export default async function createHeader() {
                              <div class="sorting-filter--section d-none">
                                        <span data-sort="htl">Hight To Low</span>
                                        <span  data-sort="lth">Low To High</span>
+                                       <span  data-sort="clr">Clear</span>
                                 </div>
 
                             `

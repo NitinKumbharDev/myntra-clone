@@ -497,8 +497,8 @@ main {
     text-align: center;
 }
 
-.sorting-filter--section span:first-child{
-    border-bottom:1px dashed #7e818c;
+.sorting-filter--section span:not(:last-child) {
+    border-bottom: 1px dashed #7e818c;
     padding-bottom: .55rem;
 }
 
